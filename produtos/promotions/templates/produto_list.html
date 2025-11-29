@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Produtos{% endblock %}
+
+{% block content %}
+<div class="card p-4">
+    <h2>Produtos Cadastrados</h2>
+
+    <a href="{% url 'produto_new' %}" class="btn btn-success mb-3">+ Novo Produto</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Validade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.descricao }}</td>
+                <td>R$ {{ produto.preco }}</td>
+                <td>{{ produto.validade }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Nenhum produto cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
